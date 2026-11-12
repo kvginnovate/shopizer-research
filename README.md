@@ -13,7 +13,10 @@ e-commerce platform, prepared as a take-home assignment.
 | 3 | End-to-end — customer checkout + admin catalogue, user action to DB and back | [`docs/03-end-to-end-flows.md`](docs/03-end-to-end-flows.md) |
 | 4 | Strengths & limitations — support/engineering view | [`docs/04-strengths-limitations.md`](docs/04-strengths-limitations.md) |
 | 5 | Onboarding — getting a new support engineer productive | [`docs/05-team-onboarding.md`](docs/05-team-onboarding.md) |
-| 6 | Docker setup — running the whole stack reproducibly (this guide) | [`docs/06-docker-setup.md`](docs/06-docker-setup.md) |
+| 6 | Docker setup � running the whole stack reproducibly | [`docs/06-docker-setup.md`](docs/06-docker-setup.md) |
+| 7 | Bug fixes and end-to-end verification | [`docs/07-bug-fixes.md`](docs/07-bug-fixes.md) |
+
+
 
 Short on time? Read [`SHOPIZER-BRIEFING.md`](SHOPIZER-BRIEFING.md) — the
 condensed five-part version. `docs/` is the full write-up.
