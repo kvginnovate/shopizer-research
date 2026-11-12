@@ -11,11 +11,11 @@ as surveyed from source (backend 3.2.7, shop-react 3.0.0, Angular admin).
 | 4 | [04-strengths-limitations.md](04-strengths-limitations.md) | What's well-designed, where support time goes |
 | 5 | [05-team-onboarding.md](05-team-onboarding.md) | How to get a new support engineer productive |
 
-**Repositories** (cloned alongside this docs set):
+**Upstream repositories surveyed** (linked, not vendored):
 
-- `shopizer/` — Java Spring Boot backend (REST API + business logic)
-- `shopizer-shop-reactjs/` — React customer storefront
-- `shopizer-admin/` — Angular admin console
+- [`shopizer/shopizer`](https://github.com/shopizer-ecommerce/shopizer) — Java Spring Boot backend (REST API + business logic)
+- [`shopizer/shopizer-shop-reactjs`](https://github.com/shopizer-ecommerce/shopizer-shop-reactjs) — React customer storefront
+- [`shopizer/shopizer-admin`](https://github.com/shopizer-ecommerce/shopizer-admin) — Angular admin console
 
 **Fastest path to running it:** backend `mvnw clean install` then
 `sm-shop: mvnw spring-boot:run` (http://localhost:8080, Swagger at
