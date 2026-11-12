@@ -10,6 +10,7 @@ as surveyed from source (backend 3.2.7, shop-react 3.0.0, Angular admin).
 | 3 | [03-end-to-end-flows.md](03-end-to-end-flows.md) | Customer checkout + admin catalogue, step by step through the code |
 | 4 | [04-strengths-limitations.md](04-strengths-limitations.md) | What's well-designed, where support time goes |
 | 5 | [05-team-onboarding.md](05-team-onboarding.md) | How to get a new support engineer productive |
+| 6 | [06-docker-setup.md](06-docker-setup.md) | Running the whole stack in Docker, reproducibly |
 
 **Upstream repositories surveyed** (linked, not vendored):
 
