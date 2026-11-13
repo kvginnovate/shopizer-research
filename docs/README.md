@@ -14,6 +14,7 @@ as surveyed from source (backend 3.2.7, shop-react 3.0.0, Angular admin).
 | 7 | [07-bug-fixes.md](07-bug-fixes.md) | Bug fixes and end-to-end verification |
 | 8 | [08-demo-readiness.md](08-demo-readiness.md) | Demo account, remaining items, quick demo script |
 | 9 | [09-secrets-and-credentials.md](09-secrets-and-credentials.md) | All credentials, passwords, connection strings (private) |
+| 10 | [10-ux-gaps-and-improvements.md](10-ux-gaps-and-improvements.md) | UX gaps, missing features, and improvement priorities |
 
 **Upstream repositories surveyed** (linked, not vendored):
 
