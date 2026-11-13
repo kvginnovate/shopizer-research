@@ -17,6 +17,7 @@ as surveyed from source (backend 3.2.7, shop-react 3.0.0, Angular admin).
 | 10 | [10-ux-gaps-and-improvements.md](10-ux-gaps-and-improvements.md) | UX gaps, missing features, and improvement priorities |
 | 11 | [11-demo-polish.md](11-demo-polish.md) | Demo polish applied, quick demo script, remaining issues |
 | 12 | [12-master-prompt.md](12-master-prompt.md) | Complete master prompt to recreate the entire demo from scratch |
+| 13 | [13-interview-prompt.md](13-interview-prompt.md) | Interview prompt with talking points, decisions, and troubleshooting stories |
 
 **Upstream repositories surveyed** (linked, not vendored):
 
