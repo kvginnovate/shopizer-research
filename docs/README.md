@@ -12,6 +12,7 @@ as surveyed from source (backend 3.2.7, shop-react 3.0.0, Angular admin).
 | 5 | [05-team-onboarding.md](05-team-onboarding.md) | How to get a new support engineer productive |
 | 6 | [06-docker-setup.md](06-docker-setup.md) | Running the whole stack in Docker, reproducibly |
 | 7 | [07-bug-fixes.md](07-bug-fixes.md) | Bug fixes and end-to-end verification |
+| 8 | [08-demo-readiness.md](08-demo-readiness.md) | Demo account, remaining items, quick demo script |
 
 **Upstream repositories surveyed** (linked, not vendored):
 
