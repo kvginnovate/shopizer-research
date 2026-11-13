@@ -15,6 +15,7 @@ as surveyed from source (backend 3.2.7, shop-react 3.0.0, Angular admin).
 | 8 | [08-demo-readiness.md](08-demo-readiness.md) | Demo account, remaining items, quick demo script |
 | 9 | [09-secrets-and-credentials.md](09-secrets-and-credentials.md) | All credentials, passwords, connection strings (private) |
 | 10 | [10-ux-gaps-and-improvements.md](10-ux-gaps-and-improvements.md) | UX gaps, missing features, and improvement priorities |
+| 11 | [11-demo-polish.md](11-demo-polish.md) | Demo polish applied, quick demo script, remaining issues |
 
 **Upstream repositories surveyed** (linked, not vendored):
 
