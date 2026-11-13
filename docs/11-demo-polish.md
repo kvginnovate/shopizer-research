@@ -52,7 +52,7 @@
 ## Quick Demo Script
 
 1. **Shop:** http://localhost:8082
-   - Browse "Furniture" category → 3 products with images
+   - Browse "Furniture" category → 8 products with images
    - Click "Demo Wooden Table" → see image, price, ADD TO CART
    - Add to cart → cart badge shows 1
    - Go to Cart → see item + total CA$199
@@ -60,7 +60,7 @@
 
 2. **Admin:** http://localhost:8081 (admin@shopizer.com / password)
    - Dashboard → see order charts populated
-   - Catalogue → Products → 3 products with images
+   - Catalogue → Products → 8 products with images
    - Orders → 3 orders listed
    - Store Management → view store config
 
