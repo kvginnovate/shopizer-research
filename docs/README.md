@@ -19,6 +19,7 @@ as surveyed from source (backend 3.2.7, shop-react 3.0.0, Angular admin).
 | 12 | [12-master-prompt.md](12-master-prompt.md) | Complete master prompt to recreate the entire demo from scratch |
 | 13 | [13-interview-prompt.md](13-interview-prompt.md) | Interview prompt with talking points, decisions, and troubleshooting stories |
 | 14 | [14-setup-prompt.md](14-setup-prompt.md) | Complete setup prompt for new machine (copy-paste ready) |
+| 15 | [15-jwt-authentication.md](15-jwt-authentication.md) | JWT authentication: config, login, filter, refresh, frontend usage |
 
 **Upstream repositories surveyed** (linked, not vendored):
 
