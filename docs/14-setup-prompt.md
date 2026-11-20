@@ -1,8 +1,11 @@
 # Setup Prompt for New Machine
 
 > **Copy-paste this entire prompt into any AI coding assistant on a new machine.**
-> It contains everything needed to recreate the Shopizer interview demo from scratch.
+> This is the canonical replication handoff: it recreates the Shopizer interview demo from scratch.
 > Estimated time: 2-3 hours (mostly waiting for builds/downloads).
+>
+> **Order matters:** apply Step 4 (code fixes) BEFORE building the shop image in Step 2.6.
+> **Windows clones:** normalize `shopizer-shop-reactjs/.env` to LF line endings before `docker build`, otherwise `env-config.js` is generated malformed and the shop renders an empty page.
 
 ---
 
@@ -99,12 +102,20 @@ docker run -d --name shopizer-admin -e "APP_BASE_URL=http://localhost:8080/api" 
 ```
 
 #### 2.6 Start Shop (Rebuild with Fixes)
-First, apply code fixes to shopizer-shop-reactjs (see Step 4), then:
+**Do this AFTER Step 4 (code fixes).** If you already built the image, rebuild after applying the fixes.
 ```bash
 cd shopizer-shop-reactjs
-docker build -t shopizer-shop-fixed .
+# Windows clones: strip CRLF or env-config.js comes out malformed (shop renders empty)
+python3 -c "p='.env'; s=open(p,'rb').read().replace(b'\r\n',b'\n'); open(p,'wb').write(s)"
+docker build --no-cache -t shopizer-shop-fixed .
+docker rm -f shopizer-shop 2>/dev/null
 docker run -d --name shopizer-shop -e "APP_MERCHANT=DEFAULT" -e "APP_BASE_URL=http://localhost:8080" -p 8082:80 shopizer-shop-fixed
 ```
+Verify the MONEYORDER fix actually made it into the bundle (chunk hash changes per build):
+```bash
+docker run --rm shopizer-shop-fixed sh -c 'grep -l "MONEYORDER" /usr/share/nginx/html/static/js/*.js'
+```
+If no chunk matches, the build used a stale layer or missed the Step 4 edits — do not proceed until it matches.
 
 #### 2.7 Verify
 ```bash
@@ -162,7 +173,7 @@ Products to create:
 - lamp-02: Floor Lamp, $79, category 50
 
 #### 3.6 Upload Product Images
-For each product, upload an image via:
+Image files from the original machine (`/tmp/demo-images/`) do not transfer. On the new machine, reuse checked-in assets (e.g. `shopizer-shop-reactjs/public/assets/img/banner/banner-*.jpg`) or download any 400x400 furniture JPGs first. Then, for each product, upload an image via:
 ```bash
 curl -s -X POST "http://localhost:8080/api/v1/private/products/{id}/images?store=DEFAULT" -H "Authorization: Bearer $TOKEN" -F 'file=@image.jpg' -F 'defaultImage=true'
 ```
@@ -187,8 +198,15 @@ if (window._env_.APP_PAYMENT_TYPE === 'MONEYORDER') {
 
 #### Fix 2: React Cart.js (empty cart instead of redirect)
 File: shopizer-shop-reactjs/src/pages/other/Cart.js
-- Remove the always-redirect setTimeout in fetchData
-- Change catch block to set empty cart instead of redirecting
+- Remove the always-redirect `setTimeout(() => history.push('/'))` in `fetchData`.
+- Change the `getCartData` catch block to set an empty cart instead of redirecting.
+- **Build-breaker warning:** do NOT delete a `catch` without leaving one. A `try` with no `catch`/`finally` fails `npm run build` with `SyntaxError: Missing catch or finally clause`. The safe end state is:
+```js
+} catch (error) {
+  setLoader(false)
+  setCartItems({ products: [], total: 0 })
+}
+```
 
 #### Fix 3: React console.log removal
 Remove all debug console.log from 12 files:
@@ -212,6 +230,7 @@ File: shopizer-admin/src/app/pages/orders/order-list/order-list.component.ts
 #### Fix 5: Backend OrderServiceImpl (inventory decrement)
 File: shopizer/sm-shop/src/main/java/com/salesmanager/shop/store/controller/order/facade/OrderFacadeImpl.java
 - Change: productService.getById(orderProduct.getId()) → productService.getBySku(orderProduct.getSku(), store)
+- **Deploy note:** this source fix cannot be rebuilt in this environment (Maven dependency resolution fails), so the running backend still uses the stock jar + MySQL patch. On a FRESH database the first demo orders succeed because OrderProduct IDs still align with Product IDs; after several orders the IDs diverge and checkout can fail with `Unable to find Product with id X`. That is a known limitation, not a regression — see docs/07-bug-fixes.md.
 
 #### Fix 6: Backend ImagesController (guard missing image)
 File: shopizer/sm-shop/src/main/java/com/salesmanager/shop/controller/ImagesController.java
@@ -233,11 +252,10 @@ Create docs/ folder with 13 files (see master prompt for details).
 Create SHOPIZER-BRIEFING.md (condensed version).
 Create docs/README.md (index).
 
-### STEP 7: GITHUB
-- Create public repo: shopizer-research
-- Push all documentation
-- Create PRs on forks
-- Merge in order: backend → admin → shop (PR2) → shop (PR3)
+### STEP 7: GITHUB (replication, not a new project)
+- Clone the existing research repo (single source of truth for docs): `https://github.com/kvginnovate/shopizer-research` — this file lives at `docs/14-setup-prompt.md`.
+- For code, use the existing forks/branches (backend `fix/backend-demo-fixes`, admin `fix/admin-store-filter`, shop `feat/moneyorder-payment` + `feat/shop-polish`); do not start new forks.
+- Only create a NEW `shopizer-research` repo if you intentionally want a separate copy; otherwise push doc updates to the existing repo.
 
 ### CREDENTIALS
 | Service | Username | Password |
